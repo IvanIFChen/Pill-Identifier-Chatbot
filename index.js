@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+const search = require('./search.js')
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -38,7 +39,9 @@ app.post('/webhook/', function (req, res) {
 	    let sender = event.sender.id
 	    if (event.message && event.message.text) {
 		    let text = event.message.text
-		    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+		    let pillStr = text.split(',')
+		    let out = search.searchPill(pillStr[0], pillStr[1], pillStr[2]);
+		    sendTextMessage(sender, 'reply: ' + out[0])
 	    }
     }
     res.sendStatus(200)

@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-// const search = require('./search.js')
+const search = require('search.js')
 
 app.set('port', (process.env.PORT || 5000))
 

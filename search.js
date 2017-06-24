@@ -34,11 +34,13 @@ function parseImage(dom, callback) {
 	const imgs = dom.window.document.getElementsByClassName("pid-img")
 	if (imgs.length == 0) {
 		return callback(undefined)
+	} else {
+		var out = []
+		for (var i = 0; i < imgs.length; i++) {
+			out.append(imgs[i].getElementsByTagName("img").src)
+		}
+		return callback(out)
 	}
-	// for (var i = 0; i < imgs.length; i++) {
-	// 	console.log(imgs[i].getElementsByTagName("img")[0].src)
-	// }
-	return callback(imgs[0].getElementsByTagName("img")[0].src)
 }
 
 // local run

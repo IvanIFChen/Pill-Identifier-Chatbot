@@ -31,8 +31,9 @@ function Pill(name, strength, imprint, color, shape, img) {
 
 
 function parseImage(dom, callback) {
+	const imgs;
 	try {
-		const imgs = dom.window.document.getElementsByClassName("pid-img")	
+		imgs = dom.window.document.getElementsByClassName("pid-img")	
 	} catch (e) {
 		return undefined
 	}

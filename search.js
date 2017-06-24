@@ -37,18 +37,19 @@ function parseImage(dom, callback) {
 	} else {
 		var out = []
 		for (var i = 0; i < imgs.length; i++) {
-			out.append(imgs[i].getElementsByTagName("img").src)
+			out.push(imgs[i].getElementsByTagName("img")[0].src)
 		}
 		return callback(out)
 	}
 }
 
 // local run
-// this.searchPill(1, "aiwjefoijwfojqefoiwjoeif", 3, function(response) {
-// 	var out = response
-// 	if (out == null) {
-// 		console.log("is empty")
-// 	}
-// 	// out = "hello"
-// 	console.log(out)
-// });
+this.searchPill(1, "aiwjefoijwfojqefoiwjoeif", 3, function(response) {
+	var out = response
+	if (out == null) {
+		console.log("is empty")
+	}
+	for (var i = 0; i < out.length; i++) {
+		console.log(out[i])
+	}
+});

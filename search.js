@@ -4,8 +4,9 @@ const { JSDOM } = jsdom;
 
 const urlBase = "https://www.drugs.com/imprints.php"
 
-this.searchPill = function(imprint, color, shape) {
-	let dom = JSDOM.fromURL(urlBase + createSubUrl(imprint, color, shape)).then(dom => parseImage(dom));
+this.searchPill = function(imprint, color, shape, callback) {
+	let dom = JSDOM.fromURL(urlBase + createSubUrl(imprint, color, shape)).then(dom => parseImage(dom, callback));
+
 }
 
 
@@ -29,13 +30,15 @@ function Pill(name, strength, imprint, color, shape, img) {
 }
 
 
-function parseImage(dom) {
+function parseImage(dom, callback) {
 	const imgs = dom.window.document.getElementsByClassName("pid-img")
 	// for (var i = 0; i < imgs.length; i++) {
 	// 	console.log(imgs[i].getElementsByTagName("img")[0].src)
 	// }
-	return imgs[0].getElementsByTagName("img")[0].src
+	return callback(imgs[0].getElementsByTagName("img")[0].src)
 }
 
 // usage
-// this.searchPill("G234", 2, 3);
+this.searchPill("G234", 2, 3, function(response) {
+	console.log(response)
+});

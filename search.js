@@ -1,4 +1,4 @@
-const map = require('./mapping.js');
+const map = require('mapping.js');
 const jsdom = require("jsdom")
 const { JSDOM } = jsdom;
 

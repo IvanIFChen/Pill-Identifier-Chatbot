@@ -52,7 +52,7 @@ app.post('/webhook/', function (req, res) {
 			    if (pillStr.length == 3) {
 			    	sendImTyping(sender, true)
 			    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
-		    			// sendImTyping(sender, false)
+		    			sendImTyping(sender, false)
 		    			// sendTextMessage(sender, "DEBUG: reponse = " + response)
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
@@ -60,7 +60,7 @@ app.post('/webhook/', function (req, res) {
 			    			// TODO: now it's returning img[], make it return Pill[], 
 			    			// which contains all the pill info and img
 			    			for (var i = 0; i < MAX_RESULT; i++) {
-			    				// sendImageMessage(sender, response[i])
+			    				sendImageMessage(sender, response[i])
 			    			}
 			    		}
 

@@ -31,7 +31,11 @@ function Pill(name, strength, imprint, color, shape, img) {
 
 
 function parseImage(dom, callback) {
-	const imgs = dom.window.document.getElementsByClassName("pid-img")
+	try {
+		const imgs = dom.window.document.getElementsByClassName("pid-img")	
+	} catch (e) {
+		return undefined
+	}
 	// for (var i = 0; i < imgs.length; i++) {
 	// 	console.log(imgs[i].getElementsByTagName("img")[0].src)
 	// }
@@ -39,6 +43,6 @@ function parseImage(dom, callback) {
 }
 
 // usage
-this.searchPill("G234", 2, 3, function(response) {
-	console.log(response)
-});
+// this.searchPill("https://www.drugs.com/imprints.php?imprint=O1jio1jdoi1j2io1j2d12d&color=1&shape=3", 2, 3, function(response) {
+// 	console.log(response)
+// });

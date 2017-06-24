@@ -39,19 +39,23 @@ app.post('/webhook/', function (req, res) {
 	    let sender = event.sender.id
 	    if (event.message && event.message.text) {
 		    let text = event.message.text
-		    var out = ""
+		    var out = "Please enter in this format: \"{imprint}, {color}, {shape}\""
 		    try {
 			    let pillStr = text.split(',')
-		    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
-		    		out = response
-		    		if (out === undefined) {
-		    			out = "Please enter \"{imprint}, {color}, {shape}\""
-		    		}
-		    		sendTextMessage(sender, out)
-		    	});
+			    if (pillStr.length == 3) {
+			    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
+			    		out = response
+			    		if (out === undefined) {
+			    			out = "Please enter \"{imprint}, {color}, {shape}\""
+			    		}
+			    		sendTextMessage(sender, out)
+			    	});
+			    }
+		    	
 		    } catch(e) {
-		    	sendTextMessage(sender, "something is wrong")
+		    	out = "something is wrong"
 		    }
+		    sendTextMessage(sender, out)
 	    }
     }
     res.sendStatus(200)

@@ -89,7 +89,8 @@ function sendImageMessage(sender, img) {
 
 function sendImTyping(sender, isTyping) {
 	let isTypingStr = isTyping ? "typing_on" : "typing_off"
-    let messageData = { sender_action:isTypingStr}
+    // let messageData = { sender_action:isTypingStr}
+    let messageData = { sender_action:"typing_on"}
 }
 
 function sendMessage(sender, messageData) {

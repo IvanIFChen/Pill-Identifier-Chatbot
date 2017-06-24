@@ -92,12 +92,8 @@ function sendTextMessage(sender, text) {
 }
 
 function sendImageMessage(sender, img) {
-    let messageData = attachment:{
-      type: "image",
-      payload: {
-        "url" : img
-      }
-    }
+    let messageData = { attachment:{ type: "image", payload: { url : img } } }
+
     request({
 	    url: 'https://graph.facebook.com/v2.6/me/messages',
 	    qs: {access_token:token},

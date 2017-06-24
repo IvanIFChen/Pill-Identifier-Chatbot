@@ -46,9 +46,11 @@ app.post('/webhook/', function (req, res) {
 		    	// out = list[0]
 		    	search.searchPill("G234", 2, 3, function(response) {
 		    		out = response
-		    	})
-		    } catch(e) {}
-		    sendTextMessage(sender, "reply: " + out)
+		    		sendTextMessage(sender, "reply: " + out)
+		    	});
+		    } catch(e) {
+		    	sendTextMessage(sender, "something is wrong")
+		    }
 	    }
     }
     res.sendStatus(200)

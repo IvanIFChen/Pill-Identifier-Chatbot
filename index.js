@@ -44,7 +44,10 @@ app.post('/webhook/', function (req, res) {
 			    let pillStr = text.split(',')
 		    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
 		    		out = response
-		    		sendTextMessage(sender, "reply: " + out)
+		    		if (out == "") {
+		    			out = "Please enter {imprint}, {color}, {shape}"
+		    		}
+		    		sendTextMessage(sender, out)
 		    	});
 		    } catch(e) {
 		    	sendTextMessage(sender, "something is wrong")

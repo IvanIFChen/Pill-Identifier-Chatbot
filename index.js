@@ -47,6 +47,7 @@ app.post('/webhook/', function (req, res) {
 			    let pillStr = text.split(',')
 		    	// sendTextMessage(sender, "DEBUG: pillStr length = " + pillStr.length)
 			    if (pillStr.length == 3) {
+			    	sendImTyping(sender)
 			    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
 		    			// sendTextMessage(sender, "DEBUG: reponse = " + response)
 			    		if (response == null) {
@@ -93,6 +94,26 @@ function sendTextMessage(sender, text) {
 
 function sendImageMessage(sender, img) {
     let messageData = { attachment:{ type: "image", payload: { url : img } } }
+
+    request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:token},
+	    method: 'POST',
+		json: {
+		    recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+		    console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+		    console.log('Error: ', response.body.error)
+	    }
+    })
+}
+
+function sendImTyping(sender) {
+    let messageData = { sender_action:"typing_on"}
 
     request({
 	    url: 'https://graph.facebook.com/v2.6/me/messages',

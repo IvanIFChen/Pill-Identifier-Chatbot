@@ -47,8 +47,9 @@ app.post('/webhook/', function (req, res) {
 			    let pillStr = text.split(',')
 		    	// sendTextMessage(sender, "DEBUG: pillStr length = " + pillStr.length)
 			    if (pillStr.length == 3) {
-			    	sendImTyping(sender)
+			    	sendImTyping(sender, true)
 			    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
+		    			sendImTyping(sender, false)
 		    			// sendTextMessage(sender, "DEBUG: reponse = " + response)
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
@@ -59,6 +60,7 @@ app.post('/webhook/', function (req, res) {
 			    				// sendImageMessage(sender, response[i])
 			    			}
 			    		}
+
 			    	});
 			    } else {
 			    	sendTextMessage(sender, "Please enter in this format: \"{imprint}, {color}, {shape}\"")
@@ -112,8 +114,9 @@ function sendImageMessage(sender, img) {
     })
 }
 
-function sendImTyping(sender) {
-    let messageData = { sender_action:"typing_on"}
+function sendImTyping(sender, isTyping) {
+	let isTypingStr = isTyping ? "typing_on" : "typing_off"
+    let messageData = { sender_action:isTypingStr}
 
     request({
 	    url: 'https://graph.facebook.com/v2.6/me/messages',

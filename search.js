@@ -39,6 +39,6 @@ function parseImage(dom, callback) {
 }
 
 // usage
-this.searchPill("G234", 2, 3, function(response) {
-	console.log(response)
-});
+// this.searchPill("G234", 2, 3, function(response) {
+// 	console.log(response)
+// });

@@ -44,7 +44,7 @@ app.post('/webhook/', function (req, res) {
 			    let pillStr = text.split(',')
 		    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
 		    		out = response
-		    		if (out == "") {
+		    		if (out == undefined) {
 		    			out = "Please enter {imprint}, {color}, {shape}"
 		    		}
 		    		sendTextMessage(sender, out)

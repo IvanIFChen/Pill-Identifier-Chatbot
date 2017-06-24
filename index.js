@@ -56,7 +56,7 @@ app.post('/webhook/', function (req, res) {
 			    			// TODO: now it's returning img[], make it return Pill[], 
 			    			// which contains all the pill info and img
 			    			for (var i = 0; i < MAX_RESULT; i++) {
-			    				sendImageMessage(sender, response[i])
+			    				// sendImageMessage(sender, response[i])
 			    			}
 			    		}
 			    	});

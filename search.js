@@ -31,10 +31,11 @@ function Pill(name, strength, imprint, color, shape, img) {
 
 function parseImage(dom) {
 	const imgs = dom.window.document.getElementsByClassName("pid-img")
-	for (var i = 0; i < imgs.length; i++) {
-		console.log(imgs[i].getElementsByTagName("img")[0].src)
-	}
+	// for (var i = 0; i < imgs.length; i++) {
+	// 	console.log(imgs[i].getElementsByTagName("img")[0].src)
+	// }
+	return imgs[0].getElementsByTagName("img")[0].src
 }
 
-
+// usage
 // this.searchPill("G234", 2, 3);

@@ -49,7 +49,9 @@ app.post('/webhook/', function (req, res) {
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
 			    		} else {
-			    			sendTextMessage(sender, response)
+			    			for (var i = 0; i < response.length; i++) {
+			    				sendTextMessage(sender, response[i])
+			    			}
 			    		}
 			    	});
 			    } else {

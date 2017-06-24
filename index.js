@@ -6,6 +6,9 @@ const request = require('request')
 const app = express()
 const search = require('./search.js')
 
+// Only display # results
+const MAX_RESULT = 3
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -42,14 +45,16 @@ app.post('/webhook/', function (req, res) {
 
 		    try {
 			    let pillStr = text.split(',')
-		    	sendTextMessage(sender, "DEBUG: pillStr length = " + pillStr.length)
+		    	// sendTextMessage(sender, "DEBUG: pillStr length = " + pillStr.length)
 			    if (pillStr.length == 3) {
 			    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
-		    			sendTextMessage(sender, "DEBUG: reponse = " + response)
+		    			// sendTextMessage(sender, "DEBUG: reponse = " + response)
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
 			    		} else {
-			    			for (var i = 0; i < response.length; i++) {
+			    			// TODO: now it's returning img[], make it return Pill[], 
+			    			// which contains all the pill info and img
+			    			for (var i = 0; i < MAX_RESULT; i++) {
 			    				sendTextMessage(sender, response[i])
 			    			}
 			    		}

@@ -43,13 +43,3 @@ function parseImage(dom, callback) {
 	}
 }
 
-// local run
-this.searchPill(1, "aiwjefoijwfojqefoiwjoeif", 3, function(response) {
-	var out = response
-	if (out == null) {
-		console.log("is empty")
-	}
-	for (var i = 0; i < out.length; i++) {
-		console.log(out[i])
-	}
-});

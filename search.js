@@ -1,4 +1,4 @@
-const map = require('mapping.js');
+const map = require('./mapping.js');
 const jsdom = require("jsdom")
 const { JSDOM } = jsdom;
 
@@ -37,4 +37,4 @@ function parseImage(dom) {
 }
 
 
-this.searchPill("G2", 2, 3);
+// this.searchPill("G234", 2, 3);

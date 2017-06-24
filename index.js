@@ -55,7 +55,7 @@ app.post('/webhook/', function (req, res) {
 			    			// TODO: now it's returning img[], make it return Pill[], 
 			    			// which contains all the pill info and img
 			    			for (var i = 0; i < MAX_RESULT; i++) {
-			    				sendTextMessage(sender, response[i])
+			    				sendImageMessage(sender, response[i])
 			    			}
 			    		}
 			    	});
@@ -74,6 +74,30 @@ app.post('/webhook/', function (req, res) {
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
+    request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:token},
+	    method: 'POST',
+		json: {
+		    recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+		    console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+		    console.log('Error: ', response.body.error)
+	    }
+    })
+}
+
+function sendImageMessage(sender, img) {
+    let messageData = attachment:{
+      type: "image",
+      payload: {
+        "url" : img
+      }
+    }
     request({
 	    url: 'https://graph.facebook.com/v2.6/me/messages',
 	    qs: {access_token:token},

@@ -41,10 +41,8 @@ app.post('/webhook/', function (req, res) {
 		    let text = event.message.text
 		    var out = ""
 		    try {
-			    // let pillStr = text.split(',')
-			    // let list = search.searchPill(pillStr[0], pillStr[1], pillStr[2]);
-		    	// out = list[0]
-		    	search.searchPill("G234", 2, 3, function(response) {
+			    let pillStr = text.split(',')
+		    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
 		    		out = response
 		    		sendTextMessage(sender, "reply: " + out)
 		    	});

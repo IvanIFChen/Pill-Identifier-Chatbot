@@ -87,6 +87,7 @@ function initialize() {
 	colorMap["White & Yellow"] = 38;
 	colorMap["Yellow & Gray"] = 31;
 	colorMap["Yellow & White"] = 36;
+	
 	shapeMap["none"] = 0;
 	shapeMap["Barrel"] = 1;
 	shapeMap["Biconcave"] = 2;

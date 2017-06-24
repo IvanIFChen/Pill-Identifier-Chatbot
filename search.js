@@ -6,6 +6,7 @@ const urlBase = "https://www.drugs.com/imprints.php"
 
 this.searchPill = function(imprint, color, shape, callback) {
 	let dom = JSDOM.fromURL(
+		// TODO: use mapping.js
 		urlBase + createSubUrl(imprint, color, shape))
 			.then(dom => parseImage(dom, callback));
 }
@@ -31,14 +32,17 @@ function Pill(name, strength, imprint, color, shape, img) {
 }
 
 function parseImage(dom, callback) {
+	// TODO: also parse pill data
 	const imgs = dom.window.document.getElementsByClassName("pid-img")
 	if (imgs.length == 0) {
 		return callback(undefined)
 	} else {
+		// TODO: store pill data instead
 		var out = []
 		for (var i = 0; i < imgs.length; i++) {
 			out.push(imgs[i].getElementsByTagName("img")[0].src)
 		}
+		// TODO: return Pill[]
 		return callback(out)
 	}
 }

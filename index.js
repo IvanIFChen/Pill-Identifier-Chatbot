@@ -89,9 +89,21 @@ function sendImageMessage(sender, img) {
 
 function sendImTyping(sender, isTyping) {
 	let isTypingStr = isTyping ? "typing_on" : "typing_off"
-    // let messageData = { sender_action:isTypingStr}
-    let messageData = { sender_action:"typing_on"}
-    sendMessage(sender, messageData)
+    request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:token},
+	    method: 'POST',
+		json: {
+		    recipient: {id:sender},
+			sender_action:isTypingStr
+		}
+	}, function(error, response, body) {
+		if (error) {
+		    console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+		    console.log('Error: ', response.body.error)
+	    }
+    })
 }
 
 function sendMessage(sender, messageData) {

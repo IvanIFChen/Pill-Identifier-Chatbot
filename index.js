@@ -49,7 +49,7 @@ app.post('/webhook/', function (req, res) {
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
 			    		} else {
-			    			sendTextMessage(sender, reponse)
+			    			sendTextMessage(sender, response)
 			    		}
 			    	});
 			    } else {

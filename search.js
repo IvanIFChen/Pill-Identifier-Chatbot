@@ -5,8 +5,9 @@ const { JSDOM } = jsdom;
 const urlBase = "https://www.drugs.com/imprints.php"
 
 this.searchPill = function(imprint, color, shape, callback) {
-	let dom = JSDOM.fromURL(urlBase + createSubUrl(imprint, color, shape)).then(dom => parseImage(dom, callback));
-
+	let dom = JSDOM.fromURL(
+		urlBase + createSubUrl(imprint, color, shape))
+			.then(dom => parseImage(dom, callback));
 }
 
 
@@ -29,13 +30,10 @@ function Pill(name, strength, imprint, color, shape, img) {
 	return self;
 }
 
-
 function parseImage(dom, callback) {
-	const imgs;
-	try {
-		imgs = dom.window.document.getElementsByClassName("pid-img")	
-	} catch (e) {
-		return undefined
+	const imgs = dom.window.document.getElementsByClassName("pid-img")
+	if (imgs.length == 0) {
+		return callback(undefined)
 	}
 	// for (var i = 0; i < imgs.length; i++) {
 	// 	console.log(imgs[i].getElementsByTagName("img")[0].src)
@@ -43,7 +41,12 @@ function parseImage(dom, callback) {
 	return callback(imgs[0].getElementsByTagName("img")[0].src)
 }
 
-// usage
-// this.searchPill("https://www.drugs.com/imprints.php?imprint=O1jio1jdoi1j2io1j2d12d&color=1&shape=3", 2, 3, function(response) {
-// 	console.log(response)
+// local run
+// this.searchPill(1, "aiwjefoijwfojqefoiwjoeif", 3, function(response) {
+// 	var out = response
+// 	if (out == null) {
+// 		console.log("is empty")
+// 	}
+// 	// out = "hello"
+// 	console.log(out)
 // });

@@ -53,13 +53,14 @@ app.post('/webhook/', function (req, res) {
 			    	sendImTyping(sender, true)
 			    	search.searchPill(pillStr[0], pillStr[1], pillStr[2], function(response) {
 		    			sendImTyping(sender, false)
-		    			// sendTextMessage(sender, "DEBUG: reponse = " + response)
+		     			// sendTextMessage(sender, "DEBUG: reponse = " + response)
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
 			    		} else {
 			    			for (var i = 0; i < MAX_RESULT; i++) {
-			    				sendImageMessage(sender, response[i].image)
-			    				sendTextMessage(sender, response[i].name)
+			    				sendImageMessage(sender, response[i].image, function() {
+			    					sendTextMessage(sender, response[i].name)
+			    				})
 			    				// TODO: send pill info here
 			    			}
 			    		}
@@ -77,14 +78,16 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 })
 
-function sendTextMessage(sender, text) {
+function sendTextMessage(sender, text, callback) {
     let messageData = { text:text }
     sendMessage(sender, messageData)
+    if (callback) callback()
 }
 
-function sendImageMessage(sender, img) {
+function sendImageMessage(sender, img, callback) {
     let messageData = { attachment:{ type: "image", payload: { url : img } } }
     sendMessage(sender, messageData)
+    if (callback) callback()
 }
 
 function sendImTyping(sender, isTyping) {
@@ -123,4 +126,6 @@ function sendMessage(sender, messageData) {
 	    }
     })
 }
+
+
 

@@ -75,7 +75,7 @@ app.post('/webhook/', function (req, res) {
 
 function sendImgAndTxt(sender, response, count, max) {
 	if ( count == max) {
-		break;
+		return;
 	} else {
 		sendImageMessage(sender, response[count].image, function() {
 			sendTextMessage(sender, response[count].name);

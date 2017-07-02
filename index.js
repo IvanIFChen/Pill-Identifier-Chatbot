@@ -80,17 +80,15 @@ app.post('/webhook/', function (req, res) {
 
 function sendTextMessage(sender, text, callback) {
     let messageData = { text:text }
-    sendMessage(sender, messageData)
-    if (callback) callback()
+    sendMessage(sender, messageData, callback);
 }
 
 function sendImageMessage(sender, img, callback) {
     let messageData = { attachment:{ type: "image", payload: { url : img } } }
-    sendMessage(sender, messageData)
-    if (callback) callback()
+    sendMessage(sender, messageData, callback);
 }
 
-function sendImTyping(sender, isTyping) {
+function sendImTyping(sender, isTyping, callback) {
 	let isTypingStr = isTyping ? "typing_on" : "typing_off"
     request({
 	    url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -106,10 +104,11 @@ function sendImTyping(sender, isTyping) {
 		} else if (response.body.error) {
 		    console.log('Error: ', response.body.error)
 	    }
+	    if (callback) callback();
     })
 }
 
-function sendMessage(sender, messageData) {
+function sendMessage(sender, messageData, callback) {
 	request({
 	    url: 'https://graph.facebook.com/v2.6/me/messages',
 	    qs: {access_token:token},
@@ -124,6 +123,7 @@ function sendMessage(sender, messageData) {
 		} else if (response.body.error) {
 		    console.log('Error: ', response.body.error)
 	    }
+	    if (callback) callback()
     })
 }
 

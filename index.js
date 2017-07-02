@@ -77,8 +77,8 @@ function sendImgAndTxt(sender, response, count, max) {
 	if ( count == max + 1) {
 		break;
 	} else {
-		sendImageMessage(sender, response[count], function() {
-			sendTextMessage(sender, response[count]);
+		sendImageMessage(sender, response[count].image, function() {
+			sendTextMessage(sender, response[count].name);
 		});
 		sendImgAndTxt(sender, response, count++, max);
 	}

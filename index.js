@@ -57,7 +57,7 @@ app.post('/webhook/', function (req, res) {
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
 			    		} else {
-			    			// sendImgAndTxt(sender, response, 0, MAX_RESULT);
+			    			sendImgAndTxt(sender, response, 0, MAX_RESULT);
 			    		}
 
 			    	});
@@ -79,8 +79,8 @@ function sendImgAndTxt(sender, response, count, max) {
 	} else {
 		sendImageMessage(sender, response[count].image, function() {
 			sendTextMessage(sender, response[count].name);
+			sendImgAndTxt(sender, response, count++, max);
 		});
-		sendImgAndTxt(sender, response, count++, max);
 	}
 }
 

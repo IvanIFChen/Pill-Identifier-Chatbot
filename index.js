@@ -78,7 +78,12 @@ function sendImgAndTxt(sender, response, count, max) {
 		return;
 	} else {
 		sendImageMessage(sender, response[count].image, function() {
-			sendTextMessage(sender, response[count].name);
+			const out = "Name: " + response[count].name + "\n"
+						+ "Strength: " + response[count].strength + "\n"
+						+ "Imprint: " + response[count].imprint + "\n"
+						+ "Color: " + response[count].color + "\n"
+						+ "Shape: " + response[count].shape;
+			sendTextMessage(sender, out);
 			sendImgAndTxt(sender, response, count + 1, max);
 		});
 	}

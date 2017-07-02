@@ -57,9 +57,9 @@ app.post('/webhook/', function (req, res) {
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
 			    		} else {
-			    			// TODO: now it's returning img[], make it return Pill[]
 			    			for (var i = 0; i < MAX_RESULT; i++) {
-			    				sendImageMessage(sender, response[i])
+			    				sendImageMessage(sender, response[i].image)
+			    				sendTextMessage(sender, response[i].name)
 			    				// TODO: send pill info here
 			    			}
 			    		}

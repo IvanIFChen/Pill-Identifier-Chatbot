@@ -57,12 +57,7 @@ app.post('/webhook/', function (req, res) {
 			    		if (response == null) {
 			    			sendTextMessage(sender, "Please enter a valid imprint, color, or shape")
 			    		} else {
-			    			for (var i = 0; i < MAX_RESULT; i++) {
-			    				sendImageMessage(sender, response[i].image, function() {
-			    					sendTextMessage(sender, response[i].name)
-			    				})
-			    				// TODO: send pill info here
-			    			}
+			    			sendImgAndTxt(sender, response, 0, MAX_RESULT);
 			    		}
 
 			    	});
@@ -77,6 +72,17 @@ app.post('/webhook/', function (req, res) {
     }
     res.sendStatus(200)
 })
+
+function sendImgAndTxt(sender, response, count, max) {
+	if ( count == max + 1) {
+		break;
+	} else {
+		sendImageMessage(sender, response[count], function() {
+			sendTextMessage(sender, response[count]);
+		});
+		sendImgAndTxt(sender, response, count++, max);
+	}
+}
 
 function sendTextMessage(sender, text, callback) {
     let messageData = { text:text }

@@ -27,7 +27,7 @@ const token = "EAADqvJj68NsBAHS3aMPCY7xjE2qltuzvtYVvdkoXPphZBCVz98eKUVgUfUviG3VY
 
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
-	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
+	if (req.query['hub.verify_token'] === 'a_very_secret_token_for_pill_identifire') {
 		res.send(req.query['hub.challenge'])
 	}
 	res.send('Error, wrong token')

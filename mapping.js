@@ -11,6 +11,16 @@ this.shape = function(str) {
 }
 
 function initialize() {
+	// TODO: possible solutions for converting user's input sting to color code
+	//  - Prompt a list of possible color combinations
+	// 	  { 
+	// 		none, White, Beige, Black, Blue, Brown, Clear, Gold, Gray, Green, Maroon, 
+	//      Orange, Peach, Pink, Purple, Red, Tan, Yellow, Teal, White Specks, Dark, 
+	// 		Light Green, Turquoise, Lavender, Red Specks, Blue Specks
+	//	  }
+	//  - bot should take in at most two colors (either cap or no cap),
+	//	  swap them and check for similar colors
+	//  - or just add all possible keys into the array?
 	colorMap["none"] = 0;
 	colorMap["White"] = 12;
 	colorMap["Beige"] = 14;
@@ -90,13 +100,8 @@ function initialize() {
 	
 	shapeMap["none"] = 0;
 	shapeMap["Barrel"] = 1;
-	shapeMap["Biconcave"] = 2;
-	shapeMap["Biconvex"] = 3;
-	shapeMap["Bowtie"] = 4;
 	shapeMap["Capsule-shape"] = 5;
 	shapeMap["Character-shape"] = 6;
-	shapeMap["Diamond"] = 7;
-	shapeMap["D-shape"] = 8;
 	shapeMap["Egg-shape"] = 9;
 	shapeMap["Eight-sided"] = 10;
 	shapeMap["Elliptical / Oval"] = 11;
@@ -105,20 +110,12 @@ function initialize() {
 	shapeMap["Four-sided"] = 14;
 	shapeMap["Gear-shape"] = 15;
 	shapeMap["Heart-shape"] = 16;
-	shapeMap["Hourglass-shape"] = 17;
 	shapeMap["Kidney-shape"] = 18;
-	shapeMap["Oblong"] = 19;
-	shapeMap["Oval"] = 20;
-	shapeMap["Ovoid-rectangular"] = 21;
-	shapeMap["Peanut"] = 22;
 	shapeMap["Rectangle"] = 23;
 	shapeMap["Round"] = 24;
 	shapeMap["Seven-sided"] = 25;
-	shapeMap["Shield-shape"] = 26;
 	shapeMap["Six-sided"] = 27;
-	shapeMap["Square"] = 28;
-	shapeMap["Spherical"] = 29;
-	shapeMap["Teardrop-shape"] = 30;
 	shapeMap["Three-sided"] = 32;
 	shapeMap["U-shape"] = 33;
+
 }

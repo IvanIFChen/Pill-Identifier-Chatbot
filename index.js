@@ -6,6 +6,7 @@ const request = require('request')
 const app = express()
 const search = require('./search.js')
 
+// secret file that includes th FB verification token and the webhook token
 const secret = require('./secret.js')
 
 app.set('port', (process.env.PORT || 5000))

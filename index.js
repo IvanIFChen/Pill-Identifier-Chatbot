@@ -6,6 +6,9 @@ const request = require('request')
 const app = express()
 const search = require('./search.js')
 
+const token = require('./token.txt')
+// const secret = require('./secret.txt')
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -22,7 +25,7 @@ app.get('/', function (req, res) {
 // Only display # results
 const MAX_RESULT = 3
 // Facebook API token
-const token = "EAADqvJj68NsBAHS3aMPCY7xjE2qltuzvtYVvdkoXPphZBCVz98eKUVgUfUviG3VY2si0QZAQ3nSZCzApZBTlPRGy4ZAZBkLa3MvaevZBaUeAETIdk0egIj7OlKvbXG2RmIqhiWLLPAaLHITP8zaEWeZBQVbsmZAKS0B55AU6nhEExlgZDZD"
+// const token = "EAADqvJj68NsBAHS3aMPCY7xjE2qltuzvtYVvdkoXPphZBCVz98eKUVgUfUviG3VY2si0QZAQ3nSZCzApZBTlPRGy4ZAZBkLa3MvaevZBaUeAETIdk0egIj7OlKvbXG2RmIqhiWLLPAaLHITP8zaEWeZBQVbsmZAKS0B55AU6nhEExlgZDZD"
 
 
 // for Facebook verification
